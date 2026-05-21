@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef, useMemo } from "react";
+import { useState, useEffect, useMemo } from "react";
 
 // ─── PROJECT DATABASE ────────────────────────────────────────────────────────
 
@@ -94,7 +94,6 @@ const DIFF_COLORS = { Easy: "#10B981", Medium: "#F59E0B", Hard: "#EF4444" };
 // ─── COMPONENTS ─────────────────────────────────────────────────────────────
 
 function Header({ page, setPage, darkMode, setDarkMode, searchQuery, setSearchQuery }) {
-  const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   useEffect(() => {
     const h = () => setScrolled(window.scrollY > 20);
@@ -330,8 +329,7 @@ function ProjectCard({ project, onClick, darkMode, saved, onSave }) {
 
 function ProjectModal({ project, onClose, darkMode, saved, onSave }) {
   if (!project) return null;
-  const diffColor = DIFF_COLORS[project.difficulty] || "#6B7280";
-
+  
   return (
     <div style={{ position: "fixed", inset: 0, zIndex: 2000, display: "flex", alignItems: "center", justifyContent: "center", background: "rgba(0,0,0,0.7)", backdropFilter: "blur(8px)", padding: "1rem" }} onClick={onClose}>
       <div onClick={e => e.stopPropagation()} style={{
@@ -448,7 +446,7 @@ function GeneratorPage({ darkMode, savedProjects, setSavedProjects, setSelectedP
   const [year, setYear] = useState("");
   const [difficulty, setDifficulty] = useState("");
   const [type, setType] = useState("");
-  const [domain, setDomain] = useState("");
+
   const [results, setResults] = useState([]);
   const [generated, setGenerated] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -470,8 +468,7 @@ function GeneratorPage({ darkMode, savedProjects, setSavedProjects, setSelectedP
 
   const toggleSave = (id) => setSavedProjects(s => s.includes(id) ? s.filter(x=>x!==id) : [...s, id]);
 
-  const cardBg = darkMode ? "#0a0a1e" : "#f8f9ff";
-
+ 
   return (
     <div style={{ minHeight: "100vh", background: darkMode ? "#050514" : "#f5f5ff", paddingTop: 90 }}>
       <div style={{ maxWidth: 1100, margin: "0 auto", padding: "2rem 1.5rem" }}>
@@ -859,3 +856,4 @@ function TrendingStrip({ darkMode, setSelectedProject, savedProjects, setSavedPr
     </section>
   );
 }
+ 
