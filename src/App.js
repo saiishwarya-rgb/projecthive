@@ -460,7 +460,8 @@ function GeneratorPage({ darkMode, savedProjects, setSavedProjects, setSelectedP
       if (year) pool = pool.filter(p => p.year.includes(year));
       if (difficulty) pool = pool.filter(p => p.difficulty === difficulty);
       if (type) pool = pool.filter(p => p.type.includes(type));
-      if (domain) pool = pool.filter(p => p.domain.toLowerCase().includes(domain.toLowerCase()));
+      const domain = filters.domain || '';
+if (domain) pool = pool.filter(p => p.domain.toLowerCase().includes(domain.toLowerCase()));
       setResults(pool);
       setGenerated(true);
       setLoading(false);
